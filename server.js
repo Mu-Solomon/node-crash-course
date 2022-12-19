@@ -1,9 +1,19 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+  //Testing the lodash package.
+  const num = _.random(85, 100);
+  console.log(num);
 
+  const greet = _.once(() => {
+    console.log("Hello");
+  });
+
+  greet();
+  greet();
+  greet();
   //Setting a header Type
   res.setHeader("Content-Type", "text/html");
 
