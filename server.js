@@ -8,8 +8,28 @@ const server = http.createServer((req, res) => {
   res.setHeader("Content-Type", "text/html");
 
   //Sending an html file.
+  let path = "./views/";
 
-  fs.readFile("./views/index.html", (err, data) => {
+  //Sending file according to the url or basic routing.
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      //Setting the status codes.
+      res.statusCode = 200;
+      break;
+    case "/about":
+      path += "about.html";
+      //Setting the status codes.
+      res.statusCode = 200;
+      break;
+    default:
+      path += "404.html";
+      //Setting the status codes.
+      res.statusCode = 404;
+      break;
+  }
+
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end();
