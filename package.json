@@ -1,0 +1,31 @@
+{
+  "name": "crash-course",
+  "version": "1.0.0",
+  "description": "Understanding node.js with the Net Ninja",
+  "main": "files.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mu-Solomon/node-crash-course.git"
+  },
+  "keywords": [
+    "node.js",
+    "net",
+    "ninja"
+  ],
+  "author": "Solomon Muyonjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mu-Solomon/node-crash-course/issues"
+  },
+  "homepage": "https://github.com/Mu-Solomon/node-crash-course#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
