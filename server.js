@@ -14,17 +14,23 @@ const server = http.createServer((req, res) => {
   switch (req.url) {
     case "/":
       path += "index.html";
-      //Setting the status codes.
+      //Setting the status codes 200 -> everything is OK.
       res.statusCode = 200;
       break;
     case "/about":
       path += "about.html";
-      //Setting the status codes.
+      //Setting the status codes 200 -> everything is OK.
       res.statusCode = 200;
+      break;
+    case "/about-us":
+      //Setting the status codes 301 -> resource permanentlhy removed!.
+      res.statusCode = 301;
+      res.setHeader("Location", "/about");
+      res.end();
       break;
     default:
       path += "404.html";
-      //Setting the status codes.
+      //Setting the status codes 404 -> Resource not found!.
       res.statusCode = 404;
       break;
   }
