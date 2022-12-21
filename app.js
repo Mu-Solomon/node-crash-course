@@ -7,12 +7,15 @@ const app = express();
 app.set("view engine", "ejs");
 
 //Middleware
-app.use((req, res) => {
+app.use((req, res, next) => {
   console.log("request made:");
   console.log("host:", req.hostname);
   console.log("path:", req.path);
   console.log("method:", req.method);
+  next();
 });
+
+
 
 //Responding to requests just  as in node but in a much easier way.
 app.get("/", (req, res) => {
@@ -34,6 +37,11 @@ app.get("/", (req, res) => {
     },
   ];
   res.render("index", { blogs });
+});
+
+app.use((req, res,next) => {
+  console.log("The second middleware");
+  next();
 });
 
 app.get("/about", (req, res) => {
