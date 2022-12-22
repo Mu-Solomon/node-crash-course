@@ -27,11 +27,11 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 
 //Creating and saving blogs to database
-app.get("new-blog", (req, res) => {
+app.get("/new-blog", (req, res) => {
   const blog = new Blog({
-    title: "A new blog ",
-    snippet: "All about whatsApp",
-    body: "WhatsApp is a very common application that over 3 billion people on the planet already know",
+    title: "A christmass blog.",
+    snippet: "All about the Christmass eve.",
+    body: "Christmass is a special day to most of the christians except the Adventists.",
   });
 
   blog
@@ -44,7 +44,7 @@ app.get("new-blog", (req, res) => {
     });
 });
 
-app.get("all-blogs", (req, res) => {
+app.get("/all-blogs", (req, res) => {
   Blog.find()
     .then((result) => {
       res.send(result);
@@ -54,8 +54,8 @@ app.get("all-blogs", (req, res) => {
     });
 });
 
-app.get("blog", (req, res) => {
-  Blog.findById("")
+app.get("/blog", (req, res) => {
+  Blog.findById("63a4a8edde04997a16fb2ce4")
     .then((result) => {
       res.send(result);
     })
