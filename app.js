@@ -25,6 +25,7 @@ app.set("view engine", "ejs");
 
 //Middleware & Static files
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //Redirecting
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 });
 
 // Rendering the database documents in the view
+
 app.get("/blogs", (req, res) => {
   Blog.find()
     .then((result) => {
@@ -44,14 +46,28 @@ app.get("/blogs", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", {title: " About "});
+  res.render("about", { title: " About " });
 });
 
 app.get("/blogs/create", (req, res) => {
-  res.render("create", {title: " New blog"});
+  res.render("create", { title: " New blog" });
+});
+
+//Users creating new blogs.
+app.post("/blogs", (req, res) => {
+  console.log(req.body);
+  const blog = new Blog(req.body);
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //404 page (It must be at the very bottom)
 app.use((req, res) => {
-  res.status(404).render("404", {title: " Not found"});
+  res.status(404).render("404", { title: " Not found" });
 });
