@@ -10,6 +10,9 @@ app.set("view engine", "ejs");
 //Middleware
 app.use(morgan("dev"));
 
+//Express middleware
+app.use(express.static("public"));
+
 //Responding to requests just  as in node but in a much easier way.
 app.get("/", (req, res) => {
   const blogs = [
