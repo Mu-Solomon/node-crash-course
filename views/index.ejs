@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <%- include('./partials/head') %>
-  
+
   <body>
     <%- include('./partials/nav') %>
 
@@ -12,7 +12,9 @@
       <% if(blogs.length > 0) { %> <% blogs.forEach(blog => { %>
       <h2><%= blog.title %></h2>
       <p><%= blog.snippet %></p>
-      <% }) %> <% } %>
+      <% }) %> <% } else { %>
+      <h2>There are no blogs to show today.</h2>
+       <% } %>
     </div>
     <%- include('./partials/footer') %>
   </body>
