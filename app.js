@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
 
 app.get("/blogs", (req, res) => {
   Blog.find()
+    .sort({ createdAt: -1 })
     .then((result) => {
       res.render("index", { title: "Blogs", blogs: result });
     })
@@ -55,12 +56,23 @@ app.get("/blogs/create", (req, res) => {
 
 //Users creating new blogs.
 app.post("/blogs", (req, res) => {
-  console.log(req.body);
   const blog = new Blog(req.body);
   blog
     .save()
     .then((result) => {
       res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//Using the route parameters
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { title: "Blog details", blog: result });
     })
     .catch((err) => {
       console.log(err);

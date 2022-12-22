@@ -7,14 +7,18 @@
 
     <div class="content" style="padding-left: 20px">
       <h1>Homepage</h1>
-      <p>Welcome to the ultimate blogspot of the company</p>
+      <h2>Welcome to the ultimate blogspot of the company</h2>
 
       <% if(blogs.length > 0) { %> <% blogs.forEach(blog => { %>
-      <h2><%= blog.title %></h2>
-      <p><%= blog.snippet %></p>
+      <div class="tag">
+        <a href="/blogs/<%= blog._id %>">
+          <h2><%= blog.title %></h2>
+          <p><%= blog.snippet %></p>
+        </a>
+      </div>
       <% }) %> <% } else { %>
       <h2>There are no blogs to show today.</h2>
-       <% } %>
+      <% } %>
     </div>
     <%- include('./partials/footer') %>
   </body>
