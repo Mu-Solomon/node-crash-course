@@ -1,21 +1,68 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 
 //Setting up the express app.
 const app = express();
 
 //Connect to mongoDB
 const dbURI =
-  "mongodb+srv://nodeuser:user1234@nodecourse.489lwct.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://nodeuser:user1234@nodecourse.489lwct.mongodb.net/node-course?retryWrites=true&w=majority";
+
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => {
+    //First connect to the database then start listening for requests.
+    console.log("Connected to the database.");
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
 
 //Registering the ejs engine
 app.set("view engine", "ejs");
 
-//Middleware
+//Middleware & Static files
 app.use(morgan("dev"));
-
-//Express middleware
 app.use(express.static("public"));
+
+//Creating and saving blogs to database
+app.get("new-blog", (req, res) => {
+  const blog = new Blog({
+    title: "A new blog ",
+    snippet: "All about whatsApp",
+    body: "WhatsApp is a very common application that over 3 billion people on the planet already know",
+  });
+
+  blog
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("all-blogs", (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("blog", (req, res) => {
+  Blog.findById("")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //Responding to requests just  as in node but in a much easier way.
 app.get("/", (req, res) => {
@@ -51,5 +98,3 @@ app.get("/blogs/create", (req, res) => {
 app.use((req, res) => {
   res.status(404).render("404");
 });
-
-app.listen(3000);
