@@ -129,17 +129,31 @@ h3 {
 .tag:hover {
   color: #04aa6d;
   border-left: 5px solid black;
-
 }
 
 #details {
-  margin: 15px 20px ;
+  margin: 15px 20px;
+  position: relative;
 }
 #details h2 {
   font-size: 5em;
-
 }
 #details p {
   font-size: 30px;
   margin: 20px auto;
+}
+
+.del-button {
+  background-color: crimson;
+  color: wheat;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+}
+.del-button:hover {
+  cursor: pointer;
+  font-weight: bolder;
 }
