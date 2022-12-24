@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head') %>
+  <%- include('../partials/head') %>
 
   <body>
-    <%- include('./partials/nav') %>
+    <%- include('../partials/nav') %>
 
     <div id="details" class="content">
       <h2><%= blog.title %></h2>
@@ -11,7 +11,7 @@
       <a class="del-button" data-doc="<%=blog._id %>">Delete</a>
     </div>
 
-    <%- include('./partials/footer') %>
+    <%- include('../partials/footer') %>
     <script>
       const trashCan = document.querySelector("a.del-button");
 
